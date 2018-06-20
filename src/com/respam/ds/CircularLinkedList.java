@@ -60,6 +60,10 @@ public class CircularLinkedList {
         }
     }
 
+    public ListNode getHead(){
+        return head;
+    }
+
     public void displayList(){
         if(head == null){
             System.out.println("List is empty...");
