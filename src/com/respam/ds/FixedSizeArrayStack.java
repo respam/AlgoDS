@@ -77,6 +77,6 @@ public class FixedSizeArrayStack {
         fsas1.display();
         fsas1.pop();
         fsas1.display();
-        System.out.println(fsas1.top());;
+        System.out.println(fsas1.top());
     }
 }
