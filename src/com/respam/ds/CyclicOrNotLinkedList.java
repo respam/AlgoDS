@@ -4,6 +4,9 @@ import java.util.Hashtable;
 
 public class CyclicOrNotLinkedList {
 
+    // Floyd Algorithms common node variable:
+    ListNode common = null;
+
     public boolean checkCycle(ListNode head){
 
         int count = 1;
@@ -20,15 +23,39 @@ public class CyclicOrNotLinkedList {
     }
 
     public boolean floydAlgoCheckCycle(ListNode head){
-        while(head.next != null){
-            ListNode slow = head;
-            ListNode fast = head.next.next; // check null pointer exception
+        ListNode fast = head.next.next;
+        ListNode slow = head;
+
+        while(slow.next != null){
+            if(fast.next.next == null){
+                return  false;
+            }
+            System.out.println("Iteration:");
+            System.out.println("slow: " + slow.toString());
+            System.out.println("fast: " + fast.toString() + "\n");
             if(slow.toString().equals(fast.toString())){
+                common = slow;
                 return true;
             }
-            head = head.next;
+            slow = slow.next;
+            fast = fast.next.next;
         }
         return false;
+    }
+
+    public int lengthOfLoop(){
+        if(common == null){
+            return 0;
+        }
+        else{
+            int length=1;
+            ListNode temp = common.next;
+            while (temp != common){
+                length++;
+                temp = temp.next;
+            }
+            return length;
+        }
     }
 
     public static void main(String[] args) {
@@ -51,9 +78,10 @@ public class CyclicOrNotLinkedList {
         cl1.insertAtEnd(new ListNode(45));
         cl1.displayList();
 
-        System.out.println("Loop in ll1: " + con1.checkCycle(ll1.getHead()));
-        System.out.println("Loop in cl1: " + con1.checkCycle(cl1.getHead()));
-        System.out.println("Loop in ll1 using Floyd Algorithm: " + con1.floydAlgoCheckCycle(ll1.getHead()));
-        System.out.println("Loop in cl1 using Floyd Algorithm: " + con1.floydAlgoCheckCycle(cl1.getHead()));
+        System.out.println("--> Loop in ll1: " + con1.checkCycle(ll1.getHead()));
+        System.out.println("--> Loop in cl1: " + con1.checkCycle(cl1.getHead()));
+        System.out.println("--> Loop in ll1 using Floyd Algorithm: " + con1.floydAlgoCheckCycle(ll1.getHead()));
+        System.out.println("--> Loop in cl1 using Floyd Algorithm: " + con1.floydAlgoCheckCycle(cl1.getHead()));
+        System.out.println("--> Length of the loop: " + con1.lengthOfLoop()); // Not correct
     }
 }
