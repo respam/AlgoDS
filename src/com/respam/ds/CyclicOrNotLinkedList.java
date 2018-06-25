@@ -8,11 +8,13 @@ public class CyclicOrNotLinkedList {
     ListNode common = null;
 
     public boolean checkCycle(ListNode head){
+        common = null;
 
         int count = 1;
         Hashtable ht = new Hashtable();
         while(head.next!= null){
             if(ht.contains(head.toString())){
+                common = head;
                 return true;
             }
             ht.put(count, head.toString());
@@ -23,6 +25,7 @@ public class CyclicOrNotLinkedList {
     }
 
     public boolean floydAlgoCheckCycle(ListNode head){
+        common = null;
         ListNode fast = head.next.next;
         ListNode slow = head;
 
@@ -30,9 +33,9 @@ public class CyclicOrNotLinkedList {
             if(fast.next.next == null){
                 return  false;
             }
-            System.out.println("Iteration:");
-            System.out.println("slow: " + slow.toString());
-            System.out.println("fast: " + fast.toString() + "\n");
+//            System.out.println("Iteration:");
+//            System.out.println("slow: " + slow.toString());
+//            System.out.println("fast: " + fast.toString() + "\n");
             if(slow.toString().equals(fast.toString())){
                 common = slow;
                 return true;
@@ -79,8 +82,11 @@ public class CyclicOrNotLinkedList {
         cl1.displayList();
 
         System.out.println("--> Loop in ll1: " + con1.checkCycle(ll1.getHead()));
+        System.out.println("--> Length of the loop: " + con1.lengthOfLoop());
         System.out.println("--> Loop in cl1: " + con1.checkCycle(cl1.getHead()));
+        System.out.println("--> Length of the loop: " + con1.lengthOfLoop());
         System.out.println("--> Loop in ll1 using Floyd Algorithm: " + con1.floydAlgoCheckCycle(ll1.getHead()));
+        System.out.println("--> Length of the loop: " + con1.lengthOfLoop());
         System.out.println("--> Loop in cl1 using Floyd Algorithm: " + con1.floydAlgoCheckCycle(cl1.getHead()));
         System.out.println("--> Length of the loop: " + con1.lengthOfLoop()); // Not correct
     }
