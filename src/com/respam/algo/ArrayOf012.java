@@ -1,5 +1,7 @@
 package com.respam.algo;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Scanner;
 
 /**
@@ -31,6 +33,7 @@ public class ArrayOf012 {
     }
 
     public static void main(String[] args) {
+        HashMap hm = new HashMap();
         ArrayOf012 a012 = new ArrayOf012();
         Scanner sc = new Scanner(System.in);
         int testCases = sc.nextInt();
@@ -41,8 +44,10 @@ public class ArrayOf012 {
             for(int j=0; j<size; j++){
                 queryArray[j] = sc.nextInt();
             }
-            String result = "answer" + testCases;
-            int[] ("answer" + testCases) = new int[];
+            hm.put(i, "The sorted result for array no. " + (i+1) +
+                    " " + Arrays.toString(a012.sort012(queryArray, size)));
         }
+
+        hm.forEach((key,value) -> System.out.println(value));
     }
 }
