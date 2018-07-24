@@ -16,9 +16,12 @@ public class EquilibriumPoint {
                 return i+1;
             }
 
-            if(sumLeft == sumRight && size > 1){
+            else if(sumLeft == sumRight && size > 1 && size%2 != 0){
                 return i+2;
             }
+
+            else
+                return -1;
         }
 
         return equibPoint;
