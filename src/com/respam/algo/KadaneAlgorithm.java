@@ -9,6 +9,7 @@ public class KadaneAlgorithm {
 
 
     public static void main(String[] args) {
+        KadaneAlgorithm ka = new KadaneAlgorithm();
         Scanner sc = new Scanner(System.in);
         int testCases = sc.nextInt();
         int[] answers = new int[testCases];
@@ -19,7 +20,7 @@ public class KadaneAlgorithm {
             for(int j=0; j<length; j++){
                 array[j] = sc.nextInt();
             }
-            answers[i] = processKadane(array);
+            answers[i] = ka.processKadane(array);
         }
 
         for(int i=0; i<testCases; i++){
@@ -28,17 +29,22 @@ public class KadaneAlgorithm {
         }
     }
 
-    private static int processKadane(int[] arrayToProcess) {
+    public static int processKadane(int[] arrayToProcess) {
         int answer = Integer.MIN_VALUE;
         for(int i=0; i<arrayToProcess.length; i++){
             int sum = arrayToProcess[i];
             for(int j=i+1; j<arrayToProcess.length; j++){
+                if(answer < sum){
+                    answer = sum;
+//                    System.out.println("answer " + answer);
+                }
+
                 sum = sum + arrayToProcess[j];
-                System.out.println("sum "+ sum);
+//                System.out.println("sum "+ sum);
 
                 if(answer < sum){
                     answer = sum;
-                    System.out.println("answer " + answer);
+//                    System.out.println("answer " + answer);
                 }
             }
         }
